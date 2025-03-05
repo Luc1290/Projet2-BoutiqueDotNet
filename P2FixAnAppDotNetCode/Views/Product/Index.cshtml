@@ -1,12 +1,16 @@
-﻿@using P2FixAnAppDotNetCode.Models
-@model IEnumerable<P2FixAnAppDotNetCode.Models.Product>
+﻿﻿@using P2FixAnAppDotNetCode.Models
+@inject P2FixAnAppDotNetCode.Models.Services.IProductService ProductService
+@model IEnumerable<Product>
+<meta charset="UTF-8">
+
 @{
     ViewData["Title"] = Localizer["ProductList"];
 }
 
-<br/>
+
+<br />
 <div id="panel-body">
-    <table class="table table-bordered table-striped table-sm">
+       <table class="table table-bordered table-striped table-sm">
         <thead>
             <tr>
                 <th>
@@ -24,19 +28,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Product p in Model)
+            @foreach (var item in Model)
             {
-                <tr>
-                    <td>@p.Name</td>
-                    <td>@p.Description</td>
-                    <td style="text-align:center">@p.Price.ToString("c")</td>
-                    <td style="text-align:center">@p.Stock</td>
+                    <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td style="text-align:center">@item.Price.ToString("C", System.Globalization.CultureInfo.CurrentCulture)</td>
+                    <td style="text-align:center">@ProductService.GetProductById(item.Id).Stock</td>
                     <td>
-                        <form id="@p.Id" asp-action="AddToCart" asp-controller="Cart" method="post">
-                            <input type="hidden" name="id" value="@p.Id" />
-                            <button type="submit" class="btn btn-primary">
+                        <form asp-action="AddToCart" asp-controller="Cart" method="post">
+                            <input type="hidden" name="productId" value="@item.Id" />
+                            <button type="submit" class="btn btn-primary" @(item.Stock == 0 ? "disabled" : "")>
                                 @Localizer["AddToCart"]
                             </button>
+
                         </form>
                     </td>
                 </tr>

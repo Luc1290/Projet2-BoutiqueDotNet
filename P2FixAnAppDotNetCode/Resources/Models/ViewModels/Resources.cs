@@ -5,39 +5,40 @@ using System.Globalization;
 
 namespace P2FixAnAppDotNetCode.Resources.Models.ViewModels
 {
+    // Classe statique pour accéder aux ressources liées aux messages d'erreur de commande
     public static class Order
     {
-        private static ResourceManager resourceManager = new ResourceManager("P2FixAnAppDotNetCode.Resources.Models.ViewModels.Order", Assembly.GetExecutingAssembly());
-        private static CultureInfo resourceCulture;
+        // Création d'un ResourceManager pour charger les ressources de la classe Order
+        private static readonly ResourceManager resourceManager = new(
+            "P2FixAnAppDotNetCode.Resources.Models.ViewModels.Order",
+            Assembly.GetExecutingAssembly());
 
-        public static string ErrorMissingName
+        // Culture actuelle utilisée pour récupérer les ressources
+        private static CultureInfo resourceCulture = CultureInfo.CurrentCulture;
+
+        // Constructeur statique qui initialise la culture avec la culture courante
+        static Order()
         {
-            get
+            resourceCulture = CultureInfo.CurrentCulture;
+        }
+
+        // Propriété pour obtenir ou définir la culture utilisée par les ressources
+        public static CultureInfo ResourceCulture
+        {
+            get => resourceCulture;
+            set
             {
-                return resourceManager.GetString("ErrorMissingName", resourceCulture);
+                if (value != null)
+                {
+                    resourceCulture = value;
+                }
             }
         }
-        public static string ErrorMissingAddress
-        {
-            get
-            {
-                return resourceManager.GetString("ErrorMissingAddress", resourceCulture);
-            }
-        }
-        public static string ErrorMissingCity
-        {
-            get
-            {
-                return resourceManager.GetString("ErrorMissingCity", resourceCulture);
-            }
-        }
-        public static string ErrorMissingCountry
-        {
-            get
-            {
-                return resourceManager.GetString("ErrorMissingCountry", resourceCulture);
-            }
-        }
+
+        // Propriétés pour récupérer les messages d'erreur à partir des ressources
+        public static string ErrorMissingName => resourceManager.GetString("ErrorMissingName", resourceCulture) ?? "ErrorMissingName";
+        public static string ErrorMissingAddress => resourceManager.GetString("ErrorMissingAddress", resourceCulture) ?? "ErrorMissingAddress";
+        public static string ErrorMissingCity => resourceManager.GetString("ErrorMissingCity", resourceCulture) ?? "ErrorMissingCity";
+        public static string ErrorMissingCountry => resourceManager.GetString("ErrorMissingCountry", resourceCulture) ?? "ErrorMissingCountry";
     }
 }
-

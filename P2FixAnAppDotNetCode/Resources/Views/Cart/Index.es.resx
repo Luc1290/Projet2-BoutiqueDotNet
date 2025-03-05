@@ -147,4 +147,16 @@
   <data name="Average" xml:space="preserve">
     <value>Media</value>
   </data>
+  <data name="CartTotal" xml:space="preserve">
+    <value>Total del carrito</value>
+  </data>
+  <data name="AveragePrice" xml:space="preserve">
+    <value>Precio medio de los artículos</value>
+  </data>
+  <data name="CartEmpty">
+    <value>Tu carrito está vacío</value>
+  </data>
+  <data name="ClearCart">
+    <value>Vaciar el carrito</value>
+  </data>
 </root>

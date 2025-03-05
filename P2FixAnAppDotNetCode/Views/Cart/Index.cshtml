@@ -1,26 +1,43 @@
 ﻿@model P2FixAnAppDotNetCode.Models.Cart
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+<meta charset="UTF-8">
 
 <h2>@Localizer["YourCart"]</h2>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>@Localizer["Quantity"]</th>
+			<th>@Localizer["Quantity"]</th>
             <th>@Localizer["Item"]</th>
             <th class="text-right">@Localizer["Price"]</th>
             <th class="text-right">@Localizer["Subtotal"]</th>
+			<th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var line in Model.Lines)
+        @foreach (var line in Model.CartLines)
         {
             <tr>
                 <td class="text-center">@line.Quantity</td>
                 <td class="text-left">@line.Product.Name</td>
-                <td class="text-right">@line.Product.Price.ToString("c")</td>
+                <td class="text-right">@line.Product.Price.ToString("c", System.Globalization.CultureInfo.CurrentCulture)</td>
                 <td class="text-right">
-                    @((line.Quantity * line.Product.Price).ToString("c"))
+                    @((line.Quantity * line.Product.Price).ToString("c", System.Globalization.CultureInfo.CurrentCulture))
                 </td>
                 <td>
+                    <form asp-controller="Cart" asp-action="UpdateQuantity" method="post" style="display:inline-block;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="productId" value="@line.Product.Id" />
+                        <input type="hidden" name="quantityChange" value="-1" />
+                        <button type="submit" class="btn btn-danger">–</button>
+                    </form>
+                    <form asp-controller="Cart" asp-action="UpdateQuantity" method="post" style="display:inline-block;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="productId" value="@line.Product.Id" />
+                        <input type="hidden" name="quantityChange" value="1" />
+                        <button type="submit" class="btn btn-success">+</button>
+                    </form>
+                </td>
+				<td>
                     <form asp-action="RemoveFromCart" method="post">
                         <input type="hidden" name="id"
                                value="@line.Product.Id" />
@@ -48,6 +65,12 @@
     </tfoot>
 </table>
 <div class="text-center">
-    <a class="btn btn-primary" asp-action="Index" asp-controller="Product">@Localizer["ContinueShopping"]</a>
-    <a class="btn btn-primary" asp-action="Index" asp-controller="Order">@Localizer["Checkout"]</a>
+    <div class="btn-group" role="group">
+        <a class="btn btn-primary mr-2" asp-action="Index" asp-controller="Product">@Localizer["ContinueShopping"]</a>
+        <a class="btn btn-primary mr-2" asp-action="Index" asp-controller="Order">@Localizer["Checkout"]</a>
+        <form asp-controller="Cart" asp-action="Clear" method="post" style="display: inline-block;">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-primary">@Localizer["ClearCart"]</button>
+        </form>
+    </div>
 </div>

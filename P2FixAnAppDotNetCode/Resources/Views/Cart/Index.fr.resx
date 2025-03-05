@@ -148,4 +148,17 @@
     <value>Total</value>
     <comment>Total</comment>
   </data>
+  <data name="CartTotal" xml:space="preserve">
+    <value>Total du panier</value>
+  </data>
+  <data name="AveragePrice" xml:space="preserve">
+    <value>Prix moyen des articles</value>
+  </data>
+  <data name="CartEmpty">
+    <value>Votre panier est vide</value>
+  </data>
+  <data name="ClearCart"> 
+    <value>Vider le panier</value> 
+  </data>
+
 </root>

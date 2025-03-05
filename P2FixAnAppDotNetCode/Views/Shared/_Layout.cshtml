@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject IViewLocalizer Localizer
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -10,13 +12,13 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-    <title>@ViewData["Title"] - P2FixAnAppDotNetCode</title>
+    <title>@ViewData["Title"] - Luc Parguel - FixAnAppDotNetCode</title>
 </head>
 <body>
-    <div class="navbar navbar-inverse bg-primary" role="navigation">
+        <div class="navbar navbar-inverse bg-primary" role="navigation">
         <div class="row">
             <a class="col navbar-brand" asp-action="Index" asp-controller="Product" style="padding-left:12%">
-                OpenClassrooms shop
+                @Localizer["LucParguelBoutique"]
             </a>
             <div class="col-4 text-right" style="padding-right:12%">
                 @await Component.InvokeAsync("CartSummary")
@@ -28,7 +30,7 @@
         <hr />
         <footer>
             <div class="row">
-                <div class="col-8"><p style="padding-top:17px">&copy; 2018 - P2FixAnAppDotNetCode</p></div>
+                <div class="col-8"><p style="padding-top:17px">&copy; 2025 - Projet 2 Dotnet Luc Parguel</p></div>
                 <div class="col-4">
                     @await Component.InvokeAsync("LanguageSelector")
                 </div>

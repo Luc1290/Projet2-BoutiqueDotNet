@@ -1,47 +1,63 @@
-﻿using P2FixAnAppDotNetCode.Models.Repositories;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using P2FixAnAppDotNetCode.Models.Repositories;
 
 namespace P2FixAnAppDotNetCode.Models.Services
 {
-    /// <summary>
-    /// This class provides services to manages the products
-    /// </summary>
+    // Classe qui fournit des services pour gérer les produits
     public class ProductService : IProductService
     {
+        // Référence au dépôt des produits
         private readonly IProductRepository _productRepository;
+        // Référence au dépôt des commandes
         private readonly IOrderRepository _orderRepository;
 
+        // Constructeur avec injection des dépendances pour le dépôt des produits et des commandes
         public ProductService(IProductRepository productRepository, IOrderRepository orderRepository)
-        {
-            _productRepository = productRepository;
-            _orderRepository = orderRepository;
-        }
+            => (_productRepository, _orderRepository) = (productRepository, orderRepository);
 
-        /// <summary>
-        /// Get all product from the inventory
-        /// </summary>
-        public Product[] GetAllProducts()
+        // Récupère tous les produits de l'inventaire
+        public List<Product> GetAllProducts()
         {
-            // TODO change the return type from array to List<T> and propagate the change
-            // throughout the application
             return _productRepository.GetAllProducts();
         }
 
-        /// <summary>
-        /// Get a product form the inventory by its id
-        /// </summary>
+        // Récupère un produit de l'inventaire à partir de son identifiant
         public Product GetProductById(int id)
         {
-            // TODO implement the method
-            return null;
+            var product = _productRepository.GetAllProducts().FirstOrDefault(p => p.Id == id);
+
+            if (product == null)
+            {
+                Console.WriteLine($"Erreur : Produit ID {id} introuvable.");
+            }
+
+            return product;
         }
 
-        /// <summary>
-        /// Update the quantities left for each product in the inventory depending of ordered the quantities
-        /// </summary>
+        // Met à jour les quantités restantes pour chaque produit de l'inventaire en fonction des quantités commandées
         public void UpdateProductQuantities(Cart cart)
         {
-            // TODO implement the method
-            // update product inventory by using _productRepository.UpdateProductStocks() method.
+            foreach (var line in cart.CartLines)
+            {
+                _productRepository.UpdateProductStocks(line.Product.Id, line.Quantity);
+            }
+        }
+
+        // Met à jour le stock d'un produit en fonction de son identifiant et du nouveau stock
+        public void UpdateProductStock(int productId, int newStock)
+        {
+            var product = _productRepository.GetProductById(productId);
+
+            if (product == null)
+            {
+                Console.WriteLine($"🚨 ERREUR : Produit ID {productId} introuvable.");
+                return;
+            }
+
+            product.Stock = newStock;
+            Console.WriteLine($"✅ Stock mis à jour via 'ProductService' : {product.Name} -> {newStock} restant.");
         }
     }
 }
