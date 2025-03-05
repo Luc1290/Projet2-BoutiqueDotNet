@@ -148,4 +148,16 @@
     <value>Average</value>
     <comment>Average</comment>
   </data>
+  <data name="CartTotal" xml:space="preserve">
+    <value>Cart Total</value>
+  </data>
+  <data name="AveragePrice" xml:space="preserve">
+    <value>Average Price of Items</value>
+  </data>
+  <data name="CartEmpty">
+    <value>Your cart is empty</value>
+  </data>
+  <data name="ClearCart">
+    <value>Clear Cart</value>
+  </data>
 </root>

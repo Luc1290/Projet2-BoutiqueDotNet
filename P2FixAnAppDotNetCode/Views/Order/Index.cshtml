@@ -1,9 +1,10 @@
 ﻿@model P2FixAnAppDotNetCode.Models.Order
-
+@inject IViewLocalizer Localizer
 <h2>@Localizer["OrderTitle"]</h2>
 
 <div asp-validation-summary="All" class="text-danger"></div>
 <form asp-action="Index" method="post">
+    <meta charset="UTF-8">
     <h3>@Localizer["ShipTo"]</h3>
     <div class="form-group">
         <label>@Localizer["Name"]*:</label><input asp-for="Name" class="form-control" />

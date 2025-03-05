@@ -1,13 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Http.Extensions
 @using Microsoft.AspNetCore.Localization
 @model P2FixAnAppDotNetCode.Models.Cart
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 <div class="">
-    @if (Model.Lines.Count() > 0)
+        @if (Model.CartLines.Count() > 0)
     {
         <small class="navbar-text">
             <b>@Localizer["YourCart"]:</b>
-            @Model.Lines.Sum(x => x.Quantity) item(s)
+            @Model.CartLines.Sum(x => x.Quantity) @Localizer["CartItems"]
             @Model.GetTotalValue().ToString("c")
         </small>
     }

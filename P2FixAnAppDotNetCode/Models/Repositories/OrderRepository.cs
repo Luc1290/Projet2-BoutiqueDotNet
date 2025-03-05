@@ -2,21 +2,16 @@
 
 namespace P2FixAnAppDotNetCode.Models.Repositories
 {
-    /// <summary>
-    /// The class that manages order data
-    /// </summary>
+    // Classe qui gère les données des commandes.
     public class OrderRepository : IOrderRepository
     {
+        // Collection interne qui stocke les commandes.
         private readonly List<Order> _orders;
 
-        public OrderRepository()
-        {
-            _orders = new List<Order>();
-        }
+        // Constructeur qui initialise la liste des commandes.
+        public OrderRepository() => _orders = new List<Order>();
 
-        /// <summary>
-        /// Saves an order
-        /// </summary>
+        // Enregistre une commande dans le système.
         public void Save(Order order)
         {
             _orders.Add(order);

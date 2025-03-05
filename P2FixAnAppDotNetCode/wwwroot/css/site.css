@@ -1,6 +1,7 @@
 ﻿body {
     padding-bottom: 20px;
     background-color: burlywood;
+    font-family: Arial, sans-serif;
 }
 
 /* Wrapping element */
@@ -8,10 +9,12 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    font-family: Arial, sans-serif;
 }
 
 table {
     background-color: white;
+    font-family: Arial, sans-serif;
 }
 
 

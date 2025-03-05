@@ -3,9 +3,7 @@ using Xunit;
 
 namespace P2FixAnAppDotNetCode.Tests
 {
-    /// <summary>
-    /// The LanguageService class
-    /// </summary>
+    // La classe de test pour le service de langue
     public class LanguageServiceTests
     {
         [Fact]
@@ -19,7 +17,7 @@ namespace P2FixAnAppDotNetCode.Tests
             string culture = languageService.SetCulture(language);
 
             // Assert
-            Assert.Same("fr", culture);
+            Assert.Equal("fr-FR", culture);
         }
     }
 }
