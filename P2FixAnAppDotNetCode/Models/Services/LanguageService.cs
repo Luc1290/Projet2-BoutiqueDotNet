@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Globalization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
+using OrderRes = P2FixAnAppDotNetCode.Resources.Models.ViewModels.OrderValidation;
 
 namespace P2FixAnAppDotNetCode.Models.Services
 {
@@ -12,6 +14,8 @@ namespace P2FixAnAppDotNetCode.Models.Services
         {
             // Définir la culture en fonction de la langue spécifiée
             string culture = SetCulture(language);
+            // MISE À JOUR : Met à jour la culture utilisée pour les messages d'erreur dans la classe Order
+            OrderRes.ResourceCulture = new CultureInfo(culture);
             // Mettre à jour le cookie de culture
             UpdateCultureCookie(context, culture);
         }

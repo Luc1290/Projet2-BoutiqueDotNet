@@ -26,28 +26,30 @@ namespace P2FixAnAppDotNetCode.Models
 
         // Nom du client, requis.
         // Si manquant, un message d'erreur spécifique est affiché.
-        [Required(ErrorMessageResourceType = typeof(P2FixAnAppDotNetCode.Resources.Models.ViewModels.Order),
+        [Required(ErrorMessageResourceType = typeof(P2FixAnAppDotNetCode.Resources.Models.ViewModels.OrderValidation),
                   ErrorMessageResourceName = "ErrorMissingName")]
         public string Name { get; set; }
 
         // Adresse du client, requise.
         // Un message d'erreur spécifique est utilisé si la valeur est manquante.
-        [Required(ErrorMessageResourceType = typeof(P2FixAnAppDotNetCode.Resources.Models.ViewModels.Order),
+        [Required(ErrorMessageResourceType = typeof(P2FixAnAppDotNetCode.Resources.Models.ViewModels.OrderValidation),
                   ErrorMessageResourceName = "ErrorMissingAddress")]
         public string Address { get; set; }
 
         // Ville du client, requise.
         // Un message d'erreur spécifique sera affiché si cette propriété n'est pas renseignée.
-        [Required(ErrorMessageResourceType = typeof(P2FixAnAppDotNetCode.Resources.Models.ViewModels.Order),
+        [Required(ErrorMessageResourceType = typeof(P2FixAnAppDotNetCode.Resources.Models.ViewModels.OrderValidation),
                   ErrorMessageResourceName = "ErrorMissingCity")]
         public string City { get; set; }
 
         // Code postal du client.
+        [Required(ErrorMessageResourceType = typeof(P2FixAnAppDotNetCode.Resources.Models.ViewModels.OrderValidation),
+          ErrorMessageResourceName = "ErrorMissingZip")]
         public string Zip { get; set; }
 
         // Pays du client, requis.
         // Un message d'erreur spécifique sera affiché si cette valeur est absente.
-        [Required(ErrorMessageResourceType = typeof(P2FixAnAppDotNetCode.Resources.Models.ViewModels.Order),
+        [Required(ErrorMessageResourceType = typeof(P2FixAnAppDotNetCode.Resources.Models.ViewModels.OrderValidation),
                   ErrorMessageResourceName = "ErrorMissingCountry")]
         public string Country { get; set; }
 

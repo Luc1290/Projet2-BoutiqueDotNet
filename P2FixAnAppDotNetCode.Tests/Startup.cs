@@ -12,8 +12,6 @@ using P2FixAnAppDotNetCode.Models;
 using P2FixAnAppDotNetCode.Models.Repositories;
 using P2FixAnAppDotNetCode.Models.Services;
 
-
-
 namespace P2FixAnAppDotNetCode
 {
     // Classe de démarrage de l'application ASP.NET Core

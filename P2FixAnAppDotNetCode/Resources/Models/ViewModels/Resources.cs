@@ -6,18 +6,18 @@ using System.Globalization;
 namespace P2FixAnAppDotNetCode.Resources.Models.ViewModels
 {
     // Classe statique pour accéder aux ressources liées aux messages d'erreur de commande
-    public static class Order
+    public static class OrderValidation
     {
         // Création d'un ResourceManager pour charger les ressources de la classe Order
-        private static readonly ResourceManager resourceManager = new(
-            "P2FixAnAppDotNetCode.Resources.Models.ViewModels.Order",
+        public static readonly ResourceManager resourceManager = new(
+            "P2FixAnAppDotNetCode.Resources.Models.ViewModels.OrderValidation",
             Assembly.GetExecutingAssembly());
 
         // Culture actuelle utilisée pour récupérer les ressources
-        private static CultureInfo resourceCulture = CultureInfo.CurrentCulture;
+        public static CultureInfo resourceCulture = CultureInfo.CurrentCulture;
 
         // Constructeur statique qui initialise la culture avec la culture courante
-        static Order()
+        static OrderValidation()
         {
             resourceCulture = CultureInfo.CurrentCulture;
         }
@@ -39,6 +39,7 @@ namespace P2FixAnAppDotNetCode.Resources.Models.ViewModels
         public static string ErrorMissingName => resourceManager.GetString("ErrorMissingName", resourceCulture) ?? "ErrorMissingName";
         public static string ErrorMissingAddress => resourceManager.GetString("ErrorMissingAddress", resourceCulture) ?? "ErrorMissingAddress";
         public static string ErrorMissingCity => resourceManager.GetString("ErrorMissingCity", resourceCulture) ?? "ErrorMissingCity";
+        public static string ErrorMissingZip => resourceManager.GetString("ErrorMissingZip", resourceCulture) ?? "ErrorMissingZip";
         public static string ErrorMissingCountry => resourceManager.GetString("ErrorMissingCountry", resourceCulture) ?? "ErrorMissingCountry";
     }
 }

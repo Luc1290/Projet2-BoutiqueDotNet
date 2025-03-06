@@ -3,6 +3,7 @@ using Microsoft.Extensions.Localization;
 using P2FixAnAppDotNetCode.Models;
 using P2FixAnAppDotNetCode.Models.Services;
 
+
 namespace P2FixAnAppDotNetCode.Controllers
 {
     // Contrôleur dédié aux commandes
@@ -12,6 +13,7 @@ namespace P2FixAnAppDotNetCode.Controllers
         private readonly ICart _cart;
         private readonly IOrderService _orderService;
         private readonly IStringLocalizer<OrderController> _localizer;
+
 
         // Constructeur avec injection des dépendances nécessaires
         public OrderController(ICart pCart, IOrderService service, IStringLocalizer<OrderController> localizer)
@@ -28,7 +30,6 @@ namespace P2FixAnAppDotNetCode.Controllers
             return View(order);
         }
 
-        // Action POST pour traiter la soumission du formulaire de commande
         [HttpPost]
         public IActionResult Index(Order order)
         {
@@ -37,8 +38,18 @@ namespace P2FixAnAppDotNetCode.Controllers
             {
                 ViewBag.CartEmpty = true;
             }
-            // Si le modèle est valide, on procède au traitement de la commande
-            if (ModelState.IsValid)
+
+            if (!ModelState.IsValid)
+            {
+                // Efface le ModelState pour forcer la réévaluation des validations 
+                // en fonction de la culture active
+                ModelState.Clear();
+                // Réexécute la validation du modèle
+                TryValidateModel(order);
+                // Renvoie la vue avec le modèle et le nouveau ModelState
+                return View(order);
+            }
+            else
             {
                 // Affecte les lignes du panier à la commande
                 order.Lines = _cart.CartLines;
@@ -47,12 +58,9 @@ namespace P2FixAnAppDotNetCode.Controllers
                 // Redirige vers l'action Completed pour confirmer la commande
                 return RedirectToAction(nameof(Completed));
             }
-            else
-            {
-                // En cas d'erreurs de validation, réaffiche le formulaire avec le modèle en cours
-                return View(order);
-            }
         }
+
+
 
         // Action pour afficher la page de confirmation de commande
         public ViewResult Completed()
