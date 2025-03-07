@@ -46,12 +46,10 @@ Outils de Versionnage :
 
 Git pour la gestion des versions
 GitHub pour l’hébergement et la collaboration sur le code
-Installation et Exécution
-Cloner le Repository :
 
-bash
-Copier
-git clone https://github.com/Luc1290/Projet2-BoutiqueDotNet.git
+Installation et Exécution :
+Cloner le Repository : https://github.com/Luc1290/Projet2-BoutiqueDotNet.git 
+
 Ouvrir le Projet :
 
 Lancez Visual Studio et ouvrez la solution (.sln) présente dans le dossier cloné.
@@ -76,7 +74,7 @@ Commits Réguliers :
 Les commits sont réalisés à chaque étape pour faciliter le suivi des modifications.
 
 Branche Principale :
-La branche principale (main/master) contient la version finalisée et testée de l’application.
+La branche principale contient la version finalisée et testée de l’application (une branche version 2.0 a été crée si vous voulez ajouter des modifications).
 
 Workflow Git :
 Utilisation de branches pour le développement de nouvelles fonctionnalités et des Pull Requests pour l’intégration après revue.
@@ -86,4 +84,3 @@ Pour toute question ou suggestion concernant ce projet, veuillez contacter :
 
 Luc Parguel
 Lucparguel12720@gmail.com
-
